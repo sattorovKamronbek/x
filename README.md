@@ -1,25 +1,22 @@
 # GitHub Bot
 
-Bu dastur GitHub contribution grafigida commitlar ko‘rinishi uchun joriy vaqt bilan 10 ta commit yaratadi va ularni remote repository’ga push qiladi.
+Bu Node.js loyiha Git repository'ga vaqt bilan bog'langan commitlar yaratish va ularni remote repository'ga yuborishni o'rganish uchun yozilgan.
 
 ## Ishga tushirish
 
-1. GitHub’da yangi repository yarating. Uni `README`, `.gitignore` yoki license bilan boshlamang.
-2. Ushbu loyihada remote manzilini o‘zingizning repository’ingizga almashtiring:
+```bash
+npm install
+N=7 npm start
+```
 
-	```bash
-	git remote set-url origin https://github.com/GITHUB_USERNAME/REPOSITORY_NAME.git
-	```
+`N` musbat butun son bo'lishi kerak. Dastur har bir commit uchun alohida sana ishlatadi va oxirida `origin/main` ga push qiladi. Faqat o'zingiz boshqaradigan test repository'sida foydalaning.
 
-3. Dependency’larni o‘rnating va loyihani ishga tushiring:
+Bu loyiha GitHub achievement yoki contribution grafigini sun'iy oshirish uchun mo'ljallanmagan. Spam commitlar GitHub qoidalariga zid bo'lishi va akkaunt cheklanishiga olib kelishi mumkin. Haqiqiy contribution uchun foydali kod, issue va pull request'lar yuboring.
 
-	```bash
-	npm install
-	N=100 npm start
-	```
+## Test
 
-`N` har bir commitni alohida kunga joylaydi. Masalan, `N=7 npm start` oxirgi 7 kun uchun 7 ta commit yaratadi. `N` berilmasa, standart qiymat `100` bo‘ladi.
+```bash
+npm test
+```
 
-GitHub so‘rasa, autentifikatsiya uchun GitHub CLI (`gh auth login`) yoki SSH remote’dan foydalaning. Bot ishlashi uchun push qilish huquqi bor akkaunt bilan autentifikatsiya qilingan bo‘lishingiz kerak.
-
-> Eslatma: bot ishga tushirilganda `data.json` o‘zgaradi va commitlar remote repository’ga yuboriladi. Faqat o‘zingiz boshqaradigan repository’da ishlating.
+Pull request yuborilganda GitHub Actions avtomatik ravishda testlarni ishga tushiradi.

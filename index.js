@@ -4,9 +4,11 @@ const simpleGit = require("simple-git");
 const FILE_PATH = "./data.json";
 const COMMIT_COUNT = Number(process.env.N || process.argv[2] || 100);
 
-if (!Number.isInteger(COMMIT_COUNT) || COMMIT_COUNT < 1) {
-  throw new Error("N must be a positive integer, for example: N=100 npm start");
-}
+const validateCommitCount = (count) => {
+  if (!Number.isInteger(count) || count < 1) {
+    throw new Error("N must be a positive integer, for example: N=7 npm start");
+  }
+};
 
 const git = simpleGit();
 
@@ -30,6 +32,8 @@ const makeCommit = async (index) => {
 };
 
 const run = async () => {
+  validateCommitCount(COMMIT_COUNT);
+
   for (let index = COMMIT_COUNT - 1; index >= 0; index -= 1) {
     await makeCommit(index);
   }
@@ -38,7 +42,11 @@ const run = async () => {
   console.log(`Done: ${COMMIT_COUNT} commits pushed.`);
 };
 
-run().catch((error) => {
-  console.error(error.message);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  run().catch((error) => {
+    console.error(error.message);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { validateCommitCount };
