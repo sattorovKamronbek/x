@@ -15,8 +15,10 @@ Bu dastur GitHub contribution grafigida commitlar ko‘rinishi uchun joriy vaqt 
 
 	```bash
 	npm install
-	npm start
+	N=100 npm start
 	```
+
+`N` har bir commitni alohida kunga joylaydi. Masalan, `N=7 npm start` oxirgi 7 kun uchun 7 ta commit yaratadi. `N` berilmasa, standart qiymat `100` bo‘ladi.
 
 GitHub so‘rasa, autentifikatsiya uchun GitHub CLI (`gh auth login`) yoki SSH remote’dan foydalaning. Bot ishlashi uchun push qilish huquqi bor akkaunt bilan autentifikatsiya qilingan bo‘lishingiz kerak.
 
